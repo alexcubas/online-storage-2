@@ -27,7 +27,8 @@ class paginaInicial extends React.Component {
 
   async buscandoAPI() {
     const { campoDePesquisa } = this.state;
-    const resultado = await getProductsFromCategoryAndQuery(campoDePesquisa)
+    const resultado = await
+    getProductsFromCategoryAndQuery(campoDePesquisa, campoDePesquisa)
       .then((categoria) => categoria.results);
     this.setState({
       resultado,
