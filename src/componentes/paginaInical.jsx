@@ -1,4 +1,5 @@
 import React from 'react';
+import FiltroCategoria from './filtroCategoria';
 
 class paginaInicial extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class paginaInicial extends React.Component {
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
+        <FiltroCategoria />
       </div>
     );
   }
