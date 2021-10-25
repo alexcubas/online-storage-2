@@ -10,11 +10,13 @@ class paginaInicial extends React.Component {
 
     this.buscandoAPI = this.buscandoAPI.bind(this);
     this.quandoDigitado = this.quandoDigitado.bind(this);
+    this.mudandoCategoria = this.mudandoCategoria.bind(this);
 
     this.state = {
       campoDePesquisa: '',
       resultado: [],
       digitando: this.quandoDigitado,
+      categoria: undefined,
     };
   }
 
@@ -26,13 +28,19 @@ class paginaInicial extends React.Component {
   }
 
   async buscandoAPI() {
-    const { campoDePesquisa } = this.state;
+    const { campoDePesquisa, categoria } = this.state;
     const resultado = await
-    getProductsFromCategoryAndQuery(campoDePesquisa, campoDePesquisa)
-      .then((categoria) => categoria.results);
+    getProductsFromCategoryAndQuery(categoria, campoDePesquisa)
+      .then((data) => data.results);
     this.setState({
       resultado,
     });
+  }
+
+  mudandoCategoria(novaVar) {
+    this.setState({
+      categoria: novaVar,
+    }, () => this.buscandoAPI());
   }
 
   render() {
@@ -62,7 +70,7 @@ class paginaInicial extends React.Component {
         </h3>
         <Produtos resultado={ resultado } />
         <CartButton />
-        <FiltroCategoria />
+        <FiltroCategoria mudandoCategoria={ this.mudandoCategoria } />
       </div>
     );
   }
