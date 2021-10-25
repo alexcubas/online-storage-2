@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import paginaInicial from './componentes/paginaInical';
 
 function App() {
   return (
     <div className="App">
-      <h1>Online</h1>
+      <BrowserRouter>
+        <Route path="/" component={ paginaInicial } />
+      </BrowserRouter>
     </div>
   );
 }
