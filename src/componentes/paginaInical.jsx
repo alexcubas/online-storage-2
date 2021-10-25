@@ -1,6 +1,8 @@
 import React from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Produtos from './produtos';
+import CartButton from './CartButton';
+import FiltroCategoria from './filtroCategoria';
 
 class paginaInicial extends React.Component {
   constructor(props) {
@@ -58,6 +60,8 @@ class paginaInicial extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
         <Produtos resultado={ resultado } />
+        <CartButton />
+        <FiltroCategoria />
       </div>
     );
   }
