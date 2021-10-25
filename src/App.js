@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import PaginaInicial from './componentes/paginaInical';
+import paginaInicial from './componentes/paginaInical';
+import paginaCart from './componentes/paginaCart';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Route path="/" component={ PaginaInicial } />
+        <Route exact path="/" component={ paginaInicial } />
+        <Route path="/carrinho" component={ paginaCart } />
       </BrowserRouter>
     </div>
   );
