@@ -33,7 +33,7 @@ class Produtos extends React.Component {
                   { element.price }
                 </p>
                 <Link
-                  to={ `/detalhe/${element.categor}/${element.id}` }
+                  to={ `/detalhe/${element.category_id}/${element.id}` }
                   data-testid="product-detail-link"
                 >
                   <p>
@@ -44,7 +44,8 @@ class Produtos extends React.Component {
                 <img src={ element.thumbnail } alt={ element.title } />
               </div>
             </div>
-          )) }
+          ))
+        }
       </div>
     );
   }

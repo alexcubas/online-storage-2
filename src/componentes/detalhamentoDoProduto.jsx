@@ -23,7 +23,6 @@ class DetalhamentoDoProduto extends React.Component {
 
   render() {
     const { produto } = this.state;
-
     return (
       <div>
         <h3 data-testid="product-detail-name">{ produto.title }</h3>
