@@ -20,7 +20,7 @@ class Produtos extends React.Component {
           <div
             key={ element.id }
             data-testid="product"
-            onMouseDown={ () => this.adicionarProduto(element) }
+            onClick={ () => this.adicionarProduto(element) }
             onKeyDown={ () => this.adicionarProduto(element) }
             role="button"
             tabIndex={ 0 }
