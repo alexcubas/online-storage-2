@@ -5,19 +5,15 @@ const lerListaProdutos = () => JSON.parse(localStorage.getItem(ITEM_SELECIONADO)
 const checarProduto = (object) => {
   const listaProdutos = lerListaProdutos();
   const resultado = listaProdutos.find((item) => item.id === object.id);
-  console.log(resultado);
   if (resultado) {
     if (resultado.quantidade) {
-      console.log('01');
       object.quantidade = resultado.quantidade + 1;
       return true;
     }
     object.quantidade = 1;
-    console.log('02');
     return false;
   }
   object.quantidade = 1;
-  console.log('03');
   return false;
 };
 
@@ -42,7 +38,6 @@ export const salvarProduto = (object) => {
   const listaProdutos = lerListaProdutos();
   if (listaProdutos !== null) {
     const checagem = checarProduto(object);
-    console.log('chech:', checagem);
     if (!checagem) setarLocalStorage([...listaProdutos, object]);
     else {
       atualizaItem(object);

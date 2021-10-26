@@ -31,16 +31,15 @@ class paginaCart extends Component {
 
   render() {
     const { listaProdutos } = this.state;
-    console.log('render');
     return (
       <div>
-        {listaProdutos.length === 0 && (
+        { listaProdutos.length === 0 && (
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-        )}
+        ) }
         { listaProdutos.map((item, i) => (
           <div key={ `${item.id}-${i}` }>
             <img src={ item.thumbnail } alt="" />
-            <p data-testid="shopping-cart-product-name">{item.title}</p>
+            <p data-testid="shopping-cart-product-name">{ item.title }</p>
             <p>
               R$
               { item.price * item.quantidade }
@@ -53,7 +52,7 @@ class paginaCart extends Component {
               >
                 -
               </button>
-              <span data-testid="shopping-cart-product-quantity">{item.quantidade}</span>
+              <span data-testid="shopping-cart-product-quantity">{ item.quantidade }</span>
               <button
                 type="button"
                 onClick={ () => this.addItem(item) }
@@ -69,7 +68,7 @@ class paginaCart extends Component {
               X
             </button>
           </div>
-        ))}
+        )) }
       </div>
     );
   }
