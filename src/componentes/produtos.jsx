@@ -9,8 +9,6 @@ class Produtos extends React.Component {
   }
 
   adicionarProduto(element) {
-    /* if (element.quantidade) element.quantidade += 1;
-    else element.quantidade = 1; */
     salvarProduto(element);
   }
 
@@ -27,12 +25,14 @@ class Produtos extends React.Component {
             role="button"
             tabIndex={ 0 }
           >
-            <p>
-              R$
-              { element.price }
-            </p>
-            <p>{ element.title }</p>
-            <img src={ element.thumbnail } alt={ element.title } />
+            <div data-testid="product-add-to-cart">
+              <p>
+                R$
+                { element.price }
+              </p>
+              <p>{ element.title }</p>
+              <img src={ element.thumbnail } alt={ element.title } />
+            </div>
           </div>
         ))}
       </div>

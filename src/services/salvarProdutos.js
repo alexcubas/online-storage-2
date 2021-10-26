@@ -4,14 +4,21 @@ const lerListaProdutos = () => JSON.parse(localStorage.getItem(ITEM_SELECIONADO)
 
 const checarProduto = (object) => {
   const listaProdutos = lerListaProdutos();
-  if (listaProdutos.filter((item) => item.id === object.id)) {
-    if (object.quantidade) {
-      object.quantidade += 1;
+  const resultado = listaProdutos.find((item) => item.id === object.id);
+  console.log(resultado);
+  if (resultado) {
+    if (resultado.quantidade) {
+      console.log('01');
+      object.quantidade = resultado.quantidade + 1;
       return true;
     }
     object.quantidade = 1;
+    console.log('02');
     return false;
   }
+  object.quantidade = 1;
+  console.log('03');
+  return false;
 };
 
 const setarLocalStorage = (elementos) => {
@@ -25,16 +32,20 @@ export const removerProduto = (object) => {
     .filter((item) => item.id !== object.id));
 };
 
+export const atualizaItem = (object) => {
+  removerProduto(object);
+  const listaProdutos = lerListaProdutos();
+  setarLocalStorage([...listaProdutos, object]);
+};
+
 export const salvarProduto = (object) => {
-  let listaProdutos = lerListaProdutos();
+  const listaProdutos = lerListaProdutos();
   if (listaProdutos !== null) {
     const checagem = checarProduto(object);
-    console.log(checagem);
+    console.log('chech:', checagem);
     if (!checagem) setarLocalStorage([...listaProdutos, object]);
     else {
-      removerProduto(object);
-      listaProdutos = lerListaProdutos();
-      setarLocalStorage([...listaProdutos, object]);
+      atualizaItem(object);
     }
   } else {
     object.quantidade = 1;

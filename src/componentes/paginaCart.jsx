@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
-import { removerProduto, pegarProduto } from '../services/salvarProdutos';
+import { removerProduto, pegarProduto, atualizaItem } from '../services/salvarProdutos';
 
 class paginaCart extends Component {
   constructor() {
     super();
+    const lista = pegarProduto();
     this.state = {
-      quantidade: 0,
-      listaProdutos: [],
+      listaProdutos: lista === null ? [] : [...lista],
     };
 
-    this.pegarListaProdutos = this.pegarListaProdutos.bind(this);
     this.removeProduto = this.removeProduto.bind(this);
-  }
-
-  componentDidMount() {
-    this.pegarListaProdutos();
-  }
-
-  pegarListaProdutos() {
-    const lista = pegarProduto();
-    this.setState({ listaProdutos: [...lista], quantidade: lista.length });
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
   }
 
   removeProduto(item) {
@@ -27,25 +19,48 @@ class paginaCart extends Component {
     this.pegarListaProdutos();
   }
 
+  removeItem(item) {
+    item.quantidade -= 1;
+    this.setState({}, () => atualizaItem(item));
+  }
+
+  addItem(item) {
+    item.quantidade += 1;
+    this.setState({}, () => atualizaItem(item));
+  }
+
   render() {
-    const { quantidade, listaProdutos } = this.state;
+    const { listaProdutos } = this.state;
+    console.log('render');
     return (
       <div>
-        {quantidade === 0 && (
+        {listaProdutos.length === 0 && (
           <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
         )}
         { listaProdutos.map((item, i) => (
           <div key={ `${item.id}-${i}` }>
             <img src={ item.thumbnail } alt="" />
-            <p>{item.title}</p>
+            <p data-testid="shopping-cart-product-name">{item.title}</p>
             <p>
               R$
-              { item.price }
+              { item.price * item.quantidade }
             </p>
             <div>
-              <button type="button">-</button>
-              <span>{item.order_backend}</span>
-              <button type="button">+</button>
+              <button
+                type="button"
+                onClick={ () => this.removeItem(item) }
+                data-testid="product-decrease-quantity"
+              >
+                -
+              </button>
+              <span data-testid="shopping-cart-product-quantity">{item.quantidade}</span>
+              <button
+                type="button"
+                onClick={ () => this.addItem(item) }
+                data-testid="product-increase-quantity"
+              >
+                +
+              </button>
             </div>
             <button
               type="button"
