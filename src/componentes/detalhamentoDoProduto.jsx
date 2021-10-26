@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import { salvarProduto } from '../services/salvarProdutos';
+import CartButton from './CartButton';
 
 class DetalhamentoDoProduto extends React.Component {
   constructor() {
@@ -23,6 +25,7 @@ class DetalhamentoDoProduto extends React.Component {
 
   render() {
     const { produto } = this.state;
+    const { attributes } = produto;
 
     return (
       <div>
@@ -33,6 +36,19 @@ class DetalhamentoDoProduto extends React.Component {
           { produto.price }
         </p>
         <h4>Especificações Tecnicas</h4>
+        {attributes && attributes.map((atributo) => (
+          <p key={ atributo.name }>
+            {`${atributo.name}: ${atributo.value_name}`}
+          </p>
+        ))}
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => salvarProduto(produto) }
+        >
+          Adicionar ao carrinho
+        </button>
+        <CartButton />
       </div>
     );
   }
