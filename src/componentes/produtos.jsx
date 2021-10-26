@@ -22,12 +22,8 @@ class Produtos extends React.Component {
             <div
               key={ element.id }
               data-testid="product"
-              onClick={ () => this.adicionarProduto(element) }
-              onKeyDown={ () => this.adicionarProduto(element) }
-              role="button"
-              tabIndex={ 0 }
             >
-              <div data-testid="product-add-to-cart">
+              <div>
                 <p>
                   R$
                   { element.price }
@@ -42,6 +38,13 @@ class Produtos extends React.Component {
                   </p>
                 </Link>
                 <img src={ element.thumbnail } alt={ element.title } />
+                <button
+                  data-testid="product-add-to-cart"
+                  type="button"
+                  onClick={ () => this.adicionarProduto(element) }
+                >
+                  Adicionar ao carrinho
+                </button>
               </div>
             </div>
           ))
