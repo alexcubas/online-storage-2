@@ -44,7 +44,8 @@ class Produtos extends React.Component {
                 <img src={ element.thumbnail } alt={ element.title } />
               </div>
             </div>
-          )) }
+          ))
+        }
       </div>
     );
   }

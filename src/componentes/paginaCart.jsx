@@ -12,6 +12,12 @@ class paginaCart extends Component {
     this.removeProduto = this.removeProduto.bind(this);
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.pegarListaProdutos = this.pegarListaProdutos.bind(this);
+  }
+
+  pegarListaProdutos() {
+    const lista = pegarProduto();
+    this.setState({ listaProdutos: lista === null ? [] : [...lista] });
   }
 
   removeProduto(item) {
@@ -52,7 +58,11 @@ class paginaCart extends Component {
               >
                 -
               </button>
-              <span data-testid="shopping-cart-product-quantity">{ item.quantidade }</span>
+              <span
+                data-testid="shopping-cart-product-quantity"
+              >
+                { item.quantidade }
+              </span>
               <button
                 type="button"
                 onClick={ () => this.addItem(item) }
