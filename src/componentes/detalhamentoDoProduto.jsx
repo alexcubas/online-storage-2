@@ -23,6 +23,7 @@ class DetalhamentoDoProduto extends React.Component {
 
   render() {
     const { produto } = this.state;
+    const especificações = produto.attributes;
 
     return (
       <div>
@@ -33,6 +34,11 @@ class DetalhamentoDoProduto extends React.Component {
           { produto.price }
         </p>
         <h4>Especificações Tecnicas</h4>
+        { especificações.map((element) => (
+          <p key={ element.name }>
+            { element.name }
+          </p>
+        )) }
       </div>
     );
   }

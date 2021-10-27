@@ -52,7 +52,12 @@ class paginaCart extends Component {
               >
                 -
               </button>
-              <span data-testid="shopping-cart-product-quantity">{ item.quantidade }</span>
+              <span data-testid="shopping-cart-product-quantity">
+                {
+                  item.quantidade
+                }
+
+              </span>
               <button
                 type="button"
                 onClick={ () => this.addItem(item) }
